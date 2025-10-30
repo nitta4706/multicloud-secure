@@ -1,0 +1,23 @@
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: admin-compute-imageuser
+  namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+spec:
+  member: group:ggen-mcg-test@mec.co.jp # kpt-set: group:${group_email}
+  resourceRef:
+    kind: Project
+    external: projects/mcg-ope-admin-dev
+  role: roles/compute.imageUser
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: user-compute-imageuser
+  namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+spec:
+  member: group:ggen-mcg-test@mec.co.jp # kpt-set: group:${user_group_email}
+  resourceRef:
+    kind: Project
+    external: projects/mcg-ope-admin-dev
+  role: roles/compute.imageUser

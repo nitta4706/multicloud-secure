@@ -1,0 +1,71 @@
+# Cloud Guard Activity Logs用
+apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+kind: PubSubTopic
+metadata:
+  name: prd-cloudgurad-activity-logs # kpt-set: ${env}-cloudgurad-activity-logs
+  namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: ggen-guardsec-040217-prd # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  resourceID: cloudguard-topic
+---
+# Cloud Guard Activity Logs用
+apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+kind: PubSubSubscription
+metadata:
+  name: prd-cloudgurad-activity-logs # kpt-set: ${env}-cloudgurad-activity-logs
+  namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: ggen-guardsec-040217-prd # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  ackDeadlineSeconds: 60
+  expirationPolicy:
+    ttl: ""
+  pushConfig:
+    oidcToken:
+      audience: dome9-gcp-logs-collector
+      serviceAccountEmail: cloudguard-logs-authentication@ggen-guardsec-040217-prd.iam.gserviceaccount.com # kpt-set: cloudguard-logs-authentication@${company}-${dept}-${project}-${env}.iam.gserviceaccount.com
+    pushEndpoint: https://gcp-activity-endpoint.dome9.com
+  resourceID: cloudguard-subscription
+  retryPolicy:
+    maximumBackoff: 60s
+    minimumBackoff: 10s
+  topicRef:
+    name: prd-cloudgurad-activity-logs # kpt-set: ${env}-cloudgurad-activity-logs
+    namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+---
+# Cloud Guard Flow Logs用
+apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+kind: PubSubTopic
+metadata:
+  name: prd-cloudgurad-flow-logs # kpt-set: ${env}-cloudgurad-flow-logs
+  namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: ggen-guardsec-040217-prd # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  resourceID: cloudguard-fl-topic
+---
+# Cloud Guard Flow Logs用
+apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+kind: PubSubSubscription
+metadata:
+  name: prd-cloudgurad-flow-logs # kpt-set: ${env}-cloudgurad-flow-logs
+  namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: ggen-guardsec-040217-prd # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  ackDeadlineSeconds: 60
+  expirationPolicy:
+    ttl: ""
+  pushConfig:
+    oidcToken:
+      audience: dome9-gcp-logs-collector
+      serviceAccountEmail: cloudguard-fl-authentication@ggen-guardsec-040217-prd.iam.gserviceaccount.com # kpt-set: cloudguard-fl-authentication@${company}-${dept}-${project}-${env}.iam.gserviceaccount.com
+    pushEndpoint: https://gcp-flowlogs-endpoint.dome9.com
+  resourceID: cloudguard-fl-subscription
+  retryPolicy:
+    maximumBackoff: 60s
+    minimumBackoff: 10s
+  topicRef:
+    name: prd-cloudgurad-flow-logs # kpt-set: ${env}-cloudgurad-flow-logs
+    namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}

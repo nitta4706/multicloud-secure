@@ -1,0 +1,117 @@
+apiVersion: accesscontextmanager.cnrm.cloud.google.com/v1beta1
+kind: AccessContextManagerAccessLevel
+metadata:
+  name: prd-accesslevel # kpt-set: ${env}-accesslevel
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/folder-id: "994625547552"
+spec:
+  accessPolicyRef:
+    external: accessPolicies/272037973676
+  basic:
+    conditions:
+      - ipSubnetworks: # kpt-set: ${client_cidr}
+          - 133.32.153.32/32
+  resourceID: ggen_vpcscexc_091309_prd_accesslevel # kpt-set: ${company}_${dept}_${project}_${env}_accesslevel
+  title: ggen-vpcscexc-091309-prd-accesslevel # kpt-set: ${company}-${dept}-${project}-${env}-accesslevel
+---
+apiVersion: accesscontextmanager.cnrm.cloud.google.com/v1beta1
+kind: AccessContextManagerAccessLevel
+metadata:
+  name: prd-accesslevel-cloudguard # kpt-set: ${env}-accesslevel-cloudguard
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/folder-id: "994625547552"
+spec:
+  accessPolicyRef:
+    external: accessPolicies/272037973676
+  basic:
+    conditions:
+      - ipSubnetworks:
+          - 3.226.212.102/32
+          - 18.210.8.152/32
+          - 34.196.214.83/32
+  resourceID: ggen_vpcscexc_091309_prd_accesslevel_cloudguard # kpt-set: ${company}_${dept}_${project}_${env}_accesslevel_cloudguard
+  title: ggen-vpcscexc-091309-prd-accesslevel-cloudguard # kpt-set: ${company}-${dept}-${project}-${env}-accesslevel-cloudguard
+---
+apiVersion: accesscontextmanager.cnrm.cloud.google.com/v1beta1
+kind: AccessContextManagerServicePerimeter
+metadata:
+  name: prd-serviceperimeter # kpt-set: ${env}-serviceperimeter
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  # annotations:
+  #   cnrm.cloud.google.com/state-into-spec: absent
+spec:
+  spec:
+    resources:
+      - projectRef:
+          name: prd-project # kpt-set: ${env}-project
+          namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+    accessLevels:
+      - name: prd-accesslevel # kpt-set: ${env}-accesslevel
+        namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+    egressPolicies: []
+    ingressPolicies:
+      - ingressFrom:
+          identityType: ANY_SERVICE_ACCOUNT
+          sources:
+            - projectRef:
+                name: prd-project # kpt-set: ${env}-project
+                namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+        ingressTo:
+          resources:
+            - projectRef:
+                name: prd-project # kpt-set: ${env}-project
+                namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+          operations:
+            - serviceName: "*"
+      - ingressFrom:
+          identities:
+            - serviceAccountRef:
+                name: prd-cloudguard # kpt-set: ${env}-cloudguard
+                namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+          sources:
+            - accessLevelRef:
+                name: prd-accesslevel-cloudguard # kpt-set: ${env}-accesslevel-cloudguard
+                namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+        ingressTo:
+          resources:
+            - projectRef:
+                name: prd-project # kpt-set: ${env}-project
+                namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+          operations:
+            - serviceName: "*"
+              # - ingressFrom:
+              #     identities:
+              #       - group: xxx # kpt-set: ${user_group_email}
+              #     sources:
+              #       - accessLevelRef:
+              #           external: "*"
+              #   ingressTo:
+              #     resources:
+              #       - projectRef:
+              #           name: xxx # kpt-set: ${env}-project
+              #           namespace: xxx # kpt-set: ${company}-${dept}-${project}
+              #     operations:
+              #       - serviceName: "*"
+    restrictedServices:
+      - bigquery.googleapis.com
+      - firestore.googleapis.com
+      - storage.googleapis.com
+      - sqladmin.googleapis.com
+      - iaptunnel.googleapis.com
+    vpcAccessibleServices:
+      enableRestriction: false
+  status:
+    resources: []
+    accessLevels: []
+    egressPolicies: []
+    ingressPolicies: []
+    restrictedServices: []
+    vpcAccessibleServices:
+      enableRestriction: false
+  accessPolicyRef:
+    external: accessPolicies/272037973676
+  resourceID: ggen_vpcscexc_091309_prd_serviceperimeter # kpt-set: ${company}_${dept}_${project}_${env}_serviceperimeter
+  title: ggen-vpcscexc-091309-prd-serviceperimeter # kpt-set: ${company}-${dept}-${project}-${env}-serviceperimeter
+  useExplicitDryRunSpec: true

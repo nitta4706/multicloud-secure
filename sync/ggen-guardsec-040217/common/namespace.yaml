@@ -1,0 +1,22 @@
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: ggen-guardsec-040217-workload-identity-user # kpt-set: ${company}-${dept}-${project}-workload-identity-user
+  namespace: config-control
+  annotations:
+    cnrm.cloud.google.com/ignore-clusterless: "true"
+    cnrm.cloud.google.com/project-id: mcg-ope-admin-dev
+spec:
+  member: serviceAccount:mcg-ope-admin-dev.svc.id.goog[cnrm-system/cnrm-controller-manager-ggen-guardsec-040217] # kpt-set: serviceAccount:mcg-ope-admin-dev.svc.id.goog[cnrm-system/cnrm-controller-manager-${company}-${dept}-${project}]
+  resourceRef:
+    kind: IAMServiceAccount
+    external: "projects/mcg-ope-admin-dev/serviceAccounts/mcg-ope-admin-dev-cc-sa@mcg-ope-admin-dev.iam.gserviceaccount.com"
+  role: roles/iam.workloadIdentityUser
+---
+apiVersion: core.cnrm.cloud.google.com/v1beta1
+kind: ConfigConnectorContext
+metadata:
+  name: configconnectorcontext.core.cnrm.cloud.google.com
+  namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+spec:
+  googleServiceAccount: mcg-ope-admin-dev-cc-sa@mcg-ope-admin-dev.iam.gserviceaccount.com

@@ -1,0 +1,145 @@
+# 管理者用グループ権限
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: xxx # kpt-set: ${env}-admin-editor
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  member: xxx # kpt-set: group:${group_email}
+  role: roles/editor
+  resourceRef:
+    kind: Project
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+---
+# 利用者用グループ権限
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: xxx # kpt-set: ${env}-user-editor
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  member: xxx # kpt-set: group:${user_group_email}
+  role: roles/editor
+  resourceRef:
+    kind: Project
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+---
+# Cloud Guard用サービスアカウント
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMServiceAccount
+metadata:
+  name: xxx # kpt-set: ${env}-cloudgurad
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: xxx # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  displayName: CloudGuard-Connect
+  resourceID: cloudguard-connect
+---
+# Cloud Guard用サービスアカウント
+# roles/viewer
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: xxx # kpt-set: ${env}-cloudgurad-viewer
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  memberFrom:
+    serviceAccountRef:
+      name: xxx # kpt-set: ${env}-cloudgurad
+      namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceRef:
+    kind: Project
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  role: roles/viewer
+---
+# Cloud Guard用サービスアカウント
+# roles/iam.securityReviewer
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: xxx # kpt-set: ${env}-cloudgurad-iam-securityreviewer
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  memberFrom:
+    serviceAccountRef:
+      name: xxx # kpt-set: ${env}-cloudgurad
+      namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceRef:
+    kind: Project
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  role: roles/iam.securityReviewer
+---
+# Cloud Guard用サービスアカウント
+# roles/cloudasset.viewer
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: xxx # kpt-set: ${env}-cloudgurad-cloudasset-viewer
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  memberFrom:
+    serviceAccountRef:
+      name: xxx # kpt-set: ${env}-cloudgurad
+      namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceRef:
+    kind: Project
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  role: roles/cloudasset.viewer
+---
+# Cloud Guard Activity Logs用サービスアカウント
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMServiceAccount
+metadata:
+  name: xxx # kpt-set: ${env}-cloudgurad-activity-logs
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: xxx # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  displayName: cloudguard-logs-authentication
+  resourceID: cloudguard-logs-authentication
+---
+# Cloud Guard Activity Logs用
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: xxx # kpt-set: ${env}-cloudgurad-activity-logs
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  member: xxx # kpt-set: serviceAccount:service-${project_num}@gcp-sa-logging.iam.gserviceaccount.com
+  role: roles/pubsub.publisher
+  resourceRef:
+    kind: PubSubTopic
+    name: xxx # kpt-set: ${env}-cloudgurad-activity-logs
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+---
+# Cloud Guard Flow Logs用サービスアカウント
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMServiceAccount
+metadata:
+  name: xxx # kpt-set: ${env}-cloudgurad-flow-logs
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: xxx # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  displayName: cloudguard-fl-authentication
+  resourceID: cloudguard-fl-authentication
+---
+# Cloud Guard Flow Logs用サービスアカウント
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: xxx # kpt-set: ${env}-cloudgurad-flow-logs
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  member: xxx # kpt-set: serviceAccount:service-${project_num}@gcp-sa-logging.iam.gserviceaccount.com
+  role: roles/pubsub.publisher
+  resourceRef:
+    kind: PubSubTopic
+    name: xxx # kpt-set: ${env}-cloudgurad-flow-logs
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}

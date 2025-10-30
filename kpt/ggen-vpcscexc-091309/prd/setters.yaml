@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: setters
+  annotations:
+    config.kubernetes.io/local-config: "true"
+data:
+  company: ggen
+  dept: vpcscexc
+  project: 091309
+  env: prd
+  subnet_cidr: 10.65.0.0/24
+  group_email: ggen-mcg-admin@mec.co.jp
+  user_group_email: ggen-mcg-user@mec.co.jp
+  client_cidr: | 
+   - 133.32.153.32/32
+  connector_cidr: 
+  project_num: __project_num__
+

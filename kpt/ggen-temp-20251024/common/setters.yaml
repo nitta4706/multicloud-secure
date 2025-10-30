@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: setters
+  annotations:
+    config.kubernetes.io/local-config: "true"
+data:
+  company: ggen
+  dept: temp
+  project: 20251024
+  group_email: ggen-mcg-admin@mec.co.jp
+  user_group_email: ggen-mcg-user@mec.co.jp
+

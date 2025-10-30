@@ -1,0 +1,29 @@
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: xxx # kpt-set: ${env}-serverless-vpc-access-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: vpcaccess.googleapis.com
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeSubnetwork
+metadata:
+  name: xxx # kpt-set: ${env}-subnet-connector
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: xxx # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  ipCidrRange: xxx # kpt-set: ${connector_cidr}
+  networkRef:
+    name: xxx # kpt-set: ${env}-vpc
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  privateIpGoogleAccess: true
+  region: asia-northeast1
+  resourceID: xxx # kpt-set: ${company}-${dept}-${project}-${env}-subnet-connector

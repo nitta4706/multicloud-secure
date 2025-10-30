@@ -1,0 +1,112 @@
+apiVersion: accesscontextmanager.cnrm.cloud.google.com/v1beta1
+kind: AccessContextManagerAccessLevel
+metadata:
+  annotations:
+    cnrm.cloud.google.com/folder-id: "994625547552"
+  name: xxx # kpt-set: ${env}-accesslevel
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  title: xxx # kpt-set: ${company}-${dept}-${project}-${env}-accesslevel
+  accessPolicyRef:
+    external: accessPolicies/272037973676
+  basic:
+    conditions:
+      - ipSubnetworks: # kpt-set: ${client_cidr}
+        - xxx
+  resourceID: xxx # kpt-set: ${company}_${dept}_${project}_${env}_accesslevel
+---
+apiVersion: accesscontextmanager.cnrm.cloud.google.com/v1beta1
+kind: AccessContextManagerAccessLevel
+metadata:
+  annotations:
+    cnrm.cloud.google.com/folder-id: "994625547552"
+  name: xxx # kpt-set: ${env}-accesslevel-cloudguard
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  title: xxx # kpt-set: ${company}-${dept}-${project}-${env}-accesslevel-cloudguard
+  accessPolicyRef:
+    external: accessPolicies/272037973676
+  basic:
+    conditions:
+      - ipSubnetworks:
+        - 3.226.212.102/32
+        - 18.210.8.152/32
+        - 34.196.214.83/32
+  resourceID: xxx # kpt-set: ${company}_${dept}_${project}_${env}_accesslevel_cloudguard
+---
+apiVersion: accesscontextmanager.cnrm.cloud.google.com/v1beta1
+kind: AccessContextManagerServicePerimeter
+metadata:
+  name: xxx # kpt-set: ${env}-serviceperimeter
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/state-into-spec: absent
+spec:
+  title: xxx # kpt-set: ${company}-${dept}-${project}-${env}-serviceperimeter
+  accessPolicyRef:
+    external: accessPolicies/272037973676
+  status:
+    accessLevels:
+      - name: xxx # kpt-set: ${env}-accesslevel
+        namespace: xxx # kpt-set: ${company}-${dept}-${project}
+    resources:
+      - projectRef:
+          name: xxx # kpt-set: ${env}-project
+          namespace: xxx # kpt-set: ${company}-${dept}-${project}
+    restrictedServices:
+      - bigquery.googleapis.com
+      - firestore.googleapis.com 
+      - storage.googleapis.com
+      - sqladmin.googleapis.com
+      - iaptunnel.googleapis.com
+    vpcAccessibleServices:
+      enableRestriction: false
+    ingressPolicies:
+      - ingressFrom:
+          identityType: ANY_SERVICE_ACCOUNT
+          sources:
+            - projectRef:
+                name: xxx # kpt-set: ${env}-project
+                namespace: xxx # kpt-set: ${company}-${dept}-${project}
+        ingressTo:
+          resources:
+            - projectRef:
+                name: xxx # kpt-set: ${env}-project
+                namespace: xxx # kpt-set: ${company}-${dept}-${project}
+          operations:
+            - serviceName: "*"
+      - ingressFrom:
+          identities:
+            - serviceAccountRef:
+                name: xxx # kpt-set: ${env}-cloudguard
+                namespace: xxx # kpt-set: ${company}-${dept}-${project}
+          sources:
+            - accessLevelRef:
+                name: xxx # kpt-set: ${env}-accesslevel-cloudguard
+                namespace: xxx # kpt-set: ${company}-${dept}-${project}
+        ingressTo:
+          resources:
+            - projectRef:
+                name: xxx # kpt-set: ${env}-project
+                namespace: xxx # kpt-set: ${company}-${dept}-${project}
+          operations:
+            - serviceName: "*"
+      - ingressFrom:
+          identities:
+            - serviceAccountRef:
+                external: xxx # kpt-set: serviceAccount:${project_num}@cloudbuild.gserviceaccount.com
+          sources:
+            - accessLevelRef:
+                external: "*"
+        ingressTo:
+          resources:
+            - projectRef:
+                name: xxx # kpt-set: ${env}-project
+                namespace: xxx # kpt-set: ${company}-${dept}-${project}
+          operations:
+            - serviceName: storage.googleapis.com
+              methodSelectors:
+                - method: "*"
+    egressPolicies: []
+  resourceID: xxx # kpt-set: ${company}_${dept}_${project}_${env}_serviceperimeter
+ 

@@ -1,0 +1,145 @@
+# 管理者用グループ権限
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: prd-admin-editor # kpt-set: ${env}-admin-editor
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+spec:
+  member: group:ggen-mcg-admin@mec.co.jp # kpt-set: group:${group_email}
+  resourceRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+    kind: Project
+  role: roles/editor
+---
+# 利用者用グループ権限
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: prd-user-editor # kpt-set: ${env}-user-editor
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+spec:
+  member: group:ggen-mcg-user@mec.co.jp # kpt-set: group:${user_group_email}
+  resourceRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+    kind: Project
+  role: roles/editor
+---
+# Cloud Guard用サービスアカウント
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMServiceAccount
+metadata:
+  name: prd-cloudguard # kpt-set: ${env}-cloudguard
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: ggen-vpcscexc-091309-prd # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  displayName: CloudGuard-Connect
+  resourceID: cloudguard-connect
+---
+# Cloud Guard用サービスアカウント
+# roles/viewer
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: prd-cloudguard-viewer # kpt-set: ${env}-cloudguard-viewer
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+spec:
+  memberFrom:
+    serviceAccountRef:
+      name: prd-cloudguard # kpt-set: ${env}-cloudguard
+      namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+    kind: Project
+  role: roles/viewer
+---
+# Cloud Guard用サービスアカウント
+# roles/iam.securityReviewer
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: prd-cloudguard-iam-securityreviewer # kpt-set: ${env}-cloudguard-iam-securityreviewer
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+spec:
+  memberFrom:
+    serviceAccountRef:
+      name: prd-cloudguard # kpt-set: ${env}-cloudguard
+      namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+    kind: Project
+  role: roles/iam.securityReviewer
+---
+# Cloud Guard用サービスアカウント
+# roles/cloudasset.viewer
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: prd-cloudguard-cloudasset-viewer # kpt-set: ${env}-cloudguard-cloudasset-viewer
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+spec:
+  memberFrom:
+    serviceAccountRef:
+      name: prd-cloudguard # kpt-set: ${env}-cloudguard
+      namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+    kind: Project
+  role: roles/cloudasset.viewer
+---
+# Cloud Guard Activity Logs用サービスアカウント
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMServiceAccount
+metadata:
+  name: prd-cloudguard-activity-logs # kpt-set: ${env}-cloudguard-activity-logs
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: ggen-vpcscexc-091309-prd # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  displayName: cloudguard-logs-authentication
+  resourceID: cloudguard-logs-authentication
+---
+# Cloud Guard Activity Logs用
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: prd-cloudguard-activity-logs # kpt-set: ${env}-cloudguard-activity-logs
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+spec:
+  member: serviceAccount:service-907561145071@gcp-sa-logging.iam.gserviceaccount.com # kpt-set: serviceAccount:service-${project_num}@gcp-sa-logging.iam.gserviceaccount.com
+  resourceRef:
+    name: prd-cloudguard-activity-logs # kpt-set: ${env}-cloudguard-activity-logs
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+    kind: PubSubTopic
+  role: roles/pubsub.publisher
+---
+# Cloud Guard Flow Logs用サービスアカウント
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMServiceAccount
+metadata:
+  name: prd-cloudguard-flow-logs # kpt-set: ${env}-cloudguard-flow-logs
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: ggen-vpcscexc-091309-prd # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  displayName: cloudguard-fl-authentication
+  resourceID: cloudguard-fl-authentication
+---
+# Cloud Guard Flow Logs用サービスアカウント
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: prd-cloudguard-flow-logs # kpt-set: ${env}-cloudguard-flow-logs
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+spec:
+  member: serviceAccount:service-907561145071@gcp-sa-logging.iam.gserviceaccount.com # kpt-set: serviceAccount:service-${project_num}@gcp-sa-logging.iam.gserviceaccount.com
+  resourceRef:
+    name: prd-cloudguard-flow-logs # kpt-set: ${env}-cloudguard-flow-logs
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+    kind: PubSubTopic
+  role: roles/pubsub.publisher

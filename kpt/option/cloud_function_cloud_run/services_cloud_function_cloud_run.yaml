@@ -1,0 +1,44 @@
+# Cloud Build API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: xxxx # kpt-set: ${env}-cloud-build-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: cloudbuild.googleapis.com
+---
+# Artifact Registry API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: xxx # kpt-set: ${env}-artifact-registry-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: artifactregistry.googleapis.com
+---
+# Cloud Run Admin API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-cloud-run-admin-api # kpt-set: ${env}-cloud-run-admin-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: run.googleapis.com

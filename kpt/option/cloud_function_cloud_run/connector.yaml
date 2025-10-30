@@ -1,0 +1,18 @@
+apiVersion: vpcaccess.cnrm.cloud.google.com/v1beta1
+kind: VPCAccessConnector
+metadata:
+  name: xxx # kpt-set: ${env}-vpc-access-connector
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  location: asia-northeast1
+  networkRef:
+    name: xxx # kpt-set: ${env}-vpc
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: xxx # kpt-set: ${company}-${project}-acc
+  subnet:
+    nameRef:
+      name: xxx # kpt-set: ${env}-subnet-connector
+      namespace: xxx # kpt-set: ${company}-${dept}-${project}

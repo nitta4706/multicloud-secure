@@ -1,0 +1,35 @@
+# Cloud Guard Activity Logs用
+apiVersion: logging.cnrm.cloud.google.com/v1beta1
+kind: LoggingLogSink
+metadata:
+  name: xxx # kpt-set: ${env}-cloudguard-activity-logs
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  resourceID: cloudguard-sink
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  uniqueWriterIdentity: true
+  destination:
+    pubSubTopicRef:
+      name: xxx # kpt-set: ${env}-cloudguard-activity-logs
+      namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  filter: LOG_ID("cloudaudit.googleapis.com/activity") OR LOG_ID("cloudaudit.googleapis.com%2Fdata_access") OR LOG_ID("cloudaudit.googleapis.com%2Fpolicy")
+---
+# Cloud Guard Flow Logs用
+apiVersion: logging.cnrm.cloud.google.com/v1beta1
+kind: LoggingLogSink
+metadata:
+  name: xxx # kpt-set: ${env}-cloudguard-flow-logs
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  resourceID: cloudguard-fl-sink
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  uniqueWriterIdentity: true
+  destination:
+    pubSubTopicRef:
+      name: xxx # kpt-set: ${env}-cloudguard-flow-logs
+      namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  filter: LOG_ID("compute.googleapis.com%2Fvpc_flows")

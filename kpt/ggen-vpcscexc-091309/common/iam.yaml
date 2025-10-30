@@ -1,0 +1,23 @@
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: admin-compute-imageuser
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  member: xxx # kpt-set: group:${group_email}
+  role: roles/compute.imageUser
+  resourceRef:
+    kind: Project
+    external: projects/mcg-ope-admin-dev
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: user-compute-imageuser
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  member: xxx # kpt-set: group:${user_group_email}
+  role: roles/compute.imageUser
+  resourceRef:
+    kind: Project
+    external: projects/mcg-ope-admin-dev

@@ -1,0 +1,27 @@
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeNetwork
+metadata:
+  name: prd-vpc # kpt-set: ${env}-vpc
+  namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: ggen-guardsec-040217-prd # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  autoCreateSubnetworks: false
+  resourceID: ggen-guardsec-040217-prd-vpc # kpt-set: ${company}-${dept}-${project}-${env}-vpc
+  routingMode: GLOBAL
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeSubnetwork
+metadata:
+  name: prd-vpc # kpt-set: ${env}-vpc
+  namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: ggen-guardsec-040217-prd # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  ipCidrRange: 10.0.0.0/16 # kpt-set: ${subnet_cidr}
+  networkRef:
+    name: prd-vpc # kpt-set: ${env}-vpc
+    namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+  privateIpGoogleAccess: true
+  region: asia-northeast1
+  resourceID: ggen-guardsec-040217-prd-subnet # kpt-set: ${company}-${dept}-${project}-${env}-subnet

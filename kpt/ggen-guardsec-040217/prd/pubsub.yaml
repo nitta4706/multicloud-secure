@@ -1,0 +1,71 @@
+# Cloud Guard Activity Logs用
+apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+kind: PubSubTopic
+metadata:
+  name: xxx # kpt-set: ${env}-cloudgurad-activity-logs
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: xxx # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  resourceID: cloudguard-topic
+---
+# Cloud Guard Activity Logs用
+apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+kind: PubSubSubscription
+metadata:
+  name: xxx # kpt-set: ${env}-cloudgurad-activity-logs
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: xxx # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  resourceID: cloudguard-subscription
+  topicRef:
+    name: xxx # kpt-set: ${env}-cloudgurad-activity-logs
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  ackDeadlineSeconds: 60
+  expirationPolicy:
+    ttl: ""
+  pushConfig:
+    pushEndpoint: https://gcp-activity-endpoint.dome9.com
+    oidcToken:
+      audience: dome9-gcp-logs-collector
+      serviceAccountEmail: xxx # kpt-set: cloudguard-logs-authentication@${company}-${dept}-${project}-${env}.iam.gserviceaccount.com
+  retryPolicy:
+    maximumBackoff: 60s
+    minimumBackoff: 10s
+---
+# Cloud Guard Flow Logs用
+apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+kind: PubSubTopic
+metadata:
+  name: xxx # kpt-set: ${env}-cloudgurad-flow-logs
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: xxx # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  resourceID: cloudguard-fl-topic
+---
+# Cloud Guard Flow Logs用
+apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+kind: PubSubSubscription
+metadata:
+  name: xxx # kpt-set: ${env}-cloudgurad-flow-logs
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/project-id: xxx # kpt-set: ${company}-${dept}-${project}-${env}
+spec:
+  resourceID: cloudguard-fl-subscription
+  topicRef:
+    name: xxx # kpt-set: ${env}-cloudgurad-flow-logs
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  ackDeadlineSeconds: 60
+  expirationPolicy:
+    ttl: ""
+  pushConfig:
+    pushEndpoint: https://gcp-flowlogs-endpoint.dome9.com
+    oidcToken:
+      audience: dome9-gcp-logs-collector
+      serviceAccountEmail: xxx # kpt-set: cloudguard-fl-authentication@${company}-${dept}-${project}-${env}.iam.gserviceaccount.com
+  retryPolicy:
+    maximumBackoff: 60s
+    minimumBackoff: 10s

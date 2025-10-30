@@ -1,0 +1,466 @@
+# デフォルトで有効なAPIは以下参照
+# https://cloud.google.com/service-usage/docs/enabled-service?hl=ja#default
+
+# BigQuery API
+# デフォルトで有効 / Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-bigquery-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: bigquery.googleapis.com
+---
+# BigQuery Migration API
+# デフォルトで有効
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-bigquery-migration-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: bigquerymigration.googleapis.com
+---
+# BigQuery Storage API
+# デフォルトで有効
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-bigquery-storage-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: bigquerystorage.googleapis.com
+---
+# Cloud Datastore API
+# デフォルトで有効
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-cloud-datastore-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: datastore.googleapis.com
+---
+# Cloud Logging API
+# デフォルトで有効 / Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-cloud-logging-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: logging.googleapis.com
+---
+# Cloud Monitoring API
+# デフォルトで有効
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-cloud-monitoring-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: monitoring.googleapis.com
+---
+# Cloud SQL
+# デフォルトで有効
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-cloud-sql-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: sql-component.googleapis.com
+---
+# Cloud Storage
+# デフォルトで有効
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-cloud-storage
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: storage-component.googleapis.com
+---
+# Cloud Storage API
+# デフォルトで有効
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-cloud-storage-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: storage.googleapis.com
+---
+# Cloud Trace API
+# デフォルトで有効
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-cloud-trace-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: cloudtrace.googleapis.com
+---
+# Google Cloud API
+# デフォルトで有効
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-google-cloud-apis
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: cloudapis.googleapis.com
+---
+# Google Cloud Storage JSON API
+# デフォルトで有効
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-google-cloud-storage-json-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: storage-api.googleapis.com
+---
+# Service Management API
+# デフォルトで有効
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-service-management-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: servicemanagement.googleapis.com
+---
+# Service Usage API
+# デフォルトで有効 / Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-service-usage-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: serviceusage.googleapis.com
+---
+# Compute Engine API
+# 要件定義書記載 / Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-compute-engine-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: compute.googleapis.com
+---
+# Cloud Identity-Aware Proxy API
+# 要件定義書記載
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-cloud-identity-aware-proxy-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: iap.googleapis.com
+---
+# Cloud Resource Manager API
+# 要件定義書記載 / Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-cloud-resource-manager-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: cloudresourcemanager.googleapis.com
+---
+# Cloud Billing API
+# 要件定義書記載
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-cloud-billing-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: cloudbilling.googleapis.com
+---
+# Cloud Asset API
+# 要件定義書記載 / Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-cloud-asset-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: cloudasset.googleapis.com
+---
+# Identity and Access Management (IAM) API
+# 要件定義書記載 / Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-iam-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: iam.googleapis.com
+---
+# Kubernetes Engine API
+# Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-kubernetes-engine-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: container.googleapis.com
+---
+# Cloud Key Management Service (KMS) API
+# Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-cloud-kms-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: cloudkms.googleapis.com
+---
+# Admin SDK API
+# Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-admin-sdk-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: admin.googleapis.com
+---
+# Cloud Functions API
+# Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: xxx # kpt-set: ${env}-cloud-functions-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: cloudfunctions.googleapis.com
+---
+# Cloud SQL Admin API
+# Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: xxx # kpt-set: ${env}-cloud-sql-admin-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: sqladmin.googleapis.com
+---
+# API Keys API
+# Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: xxx # kpt-set: ${env}-api-keys-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: apikeys.googleapis.com
+---
+# Cloud DNS API
+# Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: xxx # kpt-set: ${env}-cloud-dns-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: dns.googleapis.com
+---
+# Access Approval API
+# Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: xxx # kpt-set: ${env}-access-approval-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: accessapproval.googleapis.com
+---
+# Cloud Pub/Sub API
+# Cloud Guard用
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: xxx # kpt-set: ${env}-cloud-pub-sub-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: pubsub.googleapis.com

@@ -1,0 +1,28 @@
+apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+kind: Folder
+metadata:
+  name: prd-folder # kpt-set: ${env}-folder
+  namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+spec:
+  displayName: prd # kpt-set: ${env}
+  folderRef:
+    name: top-folder
+    namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+---
+apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+kind: Project
+metadata:
+  name: prd-project # kpt-set: ${env}-project
+  namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+  labels:
+    type: mcg
+  annotations:
+    cnrm.cloud.google.com/auto-create-network: "false"
+spec:
+  name: ggen-guardsec-040217-prd # kpt-set: ${company}-${dept}-${project}-${env}
+  billingAccountRef:
+    external: "010ACB-A5E73D-074385"
+  folderRef:
+    name: prd-folder # kpt-set: ${env}-folder
+    namespace: ggen-guardsec-040217 # kpt-set: ${company}-${dept}-${project}
+  resourceID: ggen-guardsec-040217-prd # kpt-set: ${company}-${dept}-${project}-${env}

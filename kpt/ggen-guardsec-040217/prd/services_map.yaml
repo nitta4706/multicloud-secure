@@ -1,0 +1,344 @@
+# Air Quality API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-air-quality-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: airquality.googleapis.com
+---
+# Solar API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-solar-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: solar.googleapis.com
+---
+# Aerial View API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-aerial-view-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: aerialview.googleapis.com
+---
+# Map Tiles API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-map-tiles-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: tile.googleapis.com
+---
+# Maps Datasets API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-maps-datasets-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: mapsplatformdatasets.googleapis.com
+---
+# Maps Elevation API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-maps-elevation-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: elevation-backend.googleapis.com
+---
+# Maps Embed API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-maps-embed-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: maps-embed-backend.googleapis.com
+---
+# Maps JavaScript API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-maps-javascript-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: maps-backend.googleapis.com
+---
+# Maps SDK for Android
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-maps-sdk-for-android-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: maps-android-backend.googleapis.com
+---
+# Maps SDK for iOS
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-maps-sdk-for-ios-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: maps-ios-backend.googleapis.com
+---
+# Maps Static API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-maps-static-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: static-maps-backend.googleapis.com
+---
+# Street View Publish API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-street-view-publish-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: streetviewpublish.googleapis.com
+---
+# Street View Static API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-street-view-static-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: street-view-image-backend.googleapis.com
+---
+# Address Validation API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-address-validation-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: addressvalidation.googleapis.com
+---
+# Geocoding API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-geocoding-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: geocoding-backend.googleapis.com
+---
+# Geolocation API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-geolocation-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: geolocation.googleapis.com
+---
+# Places API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-places-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: places-backend.googleapis.com
+---
+# Places API (New)
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-places-api-new
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: places.googleapis.com
+---
+# Time Zone API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-time-zone-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: timezone-backend.googleapis.com
+---
+# Directions API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-directions-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: directions-backend.googleapis.com
+---
+# Distance Matrix API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-distance-matrix-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: distance-matrix-backend.googleapis.com
+---
+# Roads API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-roads-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: roads.googleapis.com
+---
+# Routes API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: xxx # kpt-set: ${env}-routes-api
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  projectRef:
+    name: xxx # kpt-set: ${env}-project
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: routes.googleapis.com

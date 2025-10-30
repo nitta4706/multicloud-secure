@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: setters
+  annotations:
+    config.kubernetes.io/local-config: "true"
+data:
+  # プロジェクト固有
+  company: xxx
+  dept: xxx
+  project: xxx
+  env: xxx
+  subnet_cidr: xxx
+  group_email: xxx
+  user_group_email: xxx
+  client_cidr: |
+    - xxx
+    - xxx
+  connector_cidr: xxx
+  project_num: __project_num__

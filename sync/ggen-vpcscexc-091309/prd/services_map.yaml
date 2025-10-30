@@ -1,0 +1,344 @@
+# Air Quality API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-air-quality-api # kpt-set: ${env}-air-quality-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: airquality.googleapis.com
+---
+# Solar API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-solar-api # kpt-set: ${env}-solar-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: solar.googleapis.com
+---
+# Aerial View API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-aerial-view-api # kpt-set: ${env}-aerial-view-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: aerialview.googleapis.com
+---
+# Map Tiles API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-map-tiles-api # kpt-set: ${env}-map-tiles-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: tile.googleapis.com
+---
+# Maps Datasets API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-maps-datasets-api # kpt-set: ${env}-maps-datasets-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: mapsplatformdatasets.googleapis.com
+---
+# Maps Elevation API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-maps-elevation-api # kpt-set: ${env}-maps-elevation-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: elevation-backend.googleapis.com
+---
+# Maps Embed API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-maps-embed-api # kpt-set: ${env}-maps-embed-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: maps-embed-backend.googleapis.com
+---
+# Maps JavaScript API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-maps-javascript-api # kpt-set: ${env}-maps-javascript-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: maps-backend.googleapis.com
+---
+# Maps SDK for Android
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-maps-sdk-for-android-api # kpt-set: ${env}-maps-sdk-for-android-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: maps-android-backend.googleapis.com
+---
+# Maps SDK for iOS
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-maps-sdk-for-ios-api # kpt-set: ${env}-maps-sdk-for-ios-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: maps-ios-backend.googleapis.com
+---
+# Maps Static API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-maps-static-api # kpt-set: ${env}-maps-static-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: static-maps-backend.googleapis.com
+---
+# Street View Publish API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-street-view-publish-api # kpt-set: ${env}-street-view-publish-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: streetviewpublish.googleapis.com
+---
+# Street View Static API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-street-view-static-api # kpt-set: ${env}-street-view-static-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: street-view-image-backend.googleapis.com
+---
+# Address Validation API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-address-validation-api # kpt-set: ${env}-address-validation-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: addressvalidation.googleapis.com
+---
+# Geocoding API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-geocoding-api # kpt-set: ${env}-geocoding-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: geocoding-backend.googleapis.com
+---
+# Geolocation API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-geolocation-api # kpt-set: ${env}-geolocation-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: geolocation.googleapis.com
+---
+# Places API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-places-api # kpt-set: ${env}-places-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: places-backend.googleapis.com
+---
+# Places API (New)
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-places-api-new # kpt-set: ${env}-places-api-new
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: places.googleapis.com
+---
+# Time Zone API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-time-zone-api # kpt-set: ${env}-time-zone-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: timezone-backend.googleapis.com
+---
+# Directions API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-directions-api # kpt-set: ${env}-directions-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: directions-backend.googleapis.com
+---
+# Distance Matrix API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-distance-matrix-api # kpt-set: ${env}-distance-matrix-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: distance-matrix-backend.googleapis.com
+---
+# Roads API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-roads-api # kpt-set: ${env}-roads-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: roads.googleapis.com
+---
+# Routes API
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: prd-routes-api # kpt-set: ${env}-routes-api
+  namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "none"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    name: prd-project # kpt-set: ${env}-project
+    namespace: ggen-vpcscexc-091309 # kpt-set: ${company}-${dept}-${project}
+  resourceID: routes.googleapis.com

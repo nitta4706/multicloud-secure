@@ -1,0 +1,28 @@
+apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+kind: Folder
+metadata:
+  name: xxx # kpt-set: ${env}-folder
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+spec:
+  displayName: xxx # kpt-set: ${env}
+  folderRef:
+    name: top-folder
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+---
+apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+kind: Project
+metadata:
+  name: xxx # kpt-set: ${env}-project
+  namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  annotations:
+    cnrm.cloud.google.com/auto-create-network: "false"
+  labels:
+    type: mcg
+spec:
+  name: xxx # kpt-set: ${company}-${dept}-${project}-${env}
+  billingAccountRef:
+    external: "010ACB-A5E73D-074385"
+  folderRef:
+    name: xxx # kpt-set: ${env}-folder
+    namespace: xxx # kpt-set: ${company}-${dept}-${project}
+  resourceID: xxx # kpt-set: ${company}-${dept}-${project}-${env}
