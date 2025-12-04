@@ -1,0 +1,74 @@
+startup-script	
+apt-get update -y && apt-get install unzip python3-pip -y
+python3 -m pip install google-api-python-client==2.72.0 --break-system-packages
+
+
+# https://docs.docker.com/engine/install/ubuntu/
+# Add Docker's official GPG key:
+apt-get install ca-certificates curl gnupg -y
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Add the repository to apt-get sources:
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get update -y
+
+# Install the Docker packages:
+apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+
+# Download GitHub Actions (mcg_multicloud_gcp)
+cd /opt
+mkdir -p actions-runner/mcg_multicloud_gcp && cd actions-runner/mcg_multicloud_gcp
+curl -o actions-runner-linux-x64-2.320.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.320.0/actions-runner-linux-x64-2.320.0.tar.gz
+echo "93ac1b7ce743ee85b5d386f5c1787385ef07b3d7c728ff66ce0d3813d5f46900  actions-runner-linux-x64-2.320.0.tar.gz" | shasum -a 256 -c
+tar xzf ./actions-runner-linux-x64-2.320.0.tar.gz
+
+# Configure GitHub Actions
+RUNNER_ALLOW_RUNASROOT=1 ./config.sh --url https://github.com/mec-mcg/mcg_multicloud_gcp_dev --token A5RUTNMV233WG3XQBG5ZPXTHD6GW6
+
+./svc.sh install
+./svc.sh start
+
+# Download GitHub Actions (mcg_multicloud_gcp_secure)
+cd /opt
+mkdir -p actions-runner/mcg_multicloud_gcp_secure && cd actions-runner/mcg_multicloud_gcp_secure
+curl -o actions-runner-linux-x64-2.320.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.320.0/actions-runner-linux-x64-2.320.0.tar.gz
+echo "93ac1b7ce743ee85b5d386f5c1787385ef07b3d7c728ff66ce0d3813d5f46900  actions-runner-linux-x64-2.320.0.tar.gz" | shasum -a 256 -c
+tar xzf ./actions-runner-linux-x64-2.320.0.tar.gz
+
+# Configure GitHub Actions
+RUNNER_ALLOW_RUNASROOT=1 ./config.sh --url https://github.com/mec-mcg/mcg_multicloud_gcp_secure_dev --token A5RUTNKIDV62GHQLHMQQNKTHD6HCC
+
+./svc.sh install
+./svc.sh start
+
+# Download GitHub Actions (mcg_multicloud_gcp_api)
+cd /opt
+mkdir -p actions-runner/mcg_multicloud_gcp_api && cd actions-runner/mcg_multicloud_gcp_api
+curl -o actions-runner-linux-x64-2.320.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.320.0/actions-runner-linux-x64-2.320.0.tar.gz
+echo "93ac1b7ce743ee85b5d386f5c1787385ef07b3d7c728ff66ce0d3813d5f46900  actions-runner-linux-x64-2.320.0.tar.gz" | shasum -a 256 -c
+tar xzf ./actions-runner-linux-x64-2.320.0.tar.gz
+
+# Configure GitHub Actions
+RUNNER_ALLOW_RUNASROOT=1 ./config.sh --url https://github.com/mec-mcg/mcg_multicloud_gcp_api_dev --token A5RUTNNZAAOFVROFFVQGAVTHD6HFO
+
+./svc.sh install
+./svc.sh start
+
+# Download GitHub Actions (mcg_multicloud_gcp_static)
+cd /opt
+mkdir -p actions-runner/mcg_multicloud_gcp_static && cd actions-runner/mcg_multicloud_gcp_static
+curl -o actions-runner-linux-x64-2.320.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.320.0/actions-runner-linux-x64-2.320.0.tar.gz
+echo "93ac1b7ce743ee85b5d386f5c1787385ef07b3d7c728ff66ce0d3813d5f46900  actions-runner-linux-x64-2.320.0.tar.gz" | shasum -a 256 -c
+tar xzf ./actions-runner-linux-x64-2.320.0.tar.gz
+
+# Configure GitHub Actions
+RUNNER_ALLOW_RUNASROOT=1 ./config.sh --url https://github.com/mec-mcg/mcg_multicloud_gcp_static_dev --token A5RUTNISRZTY33RSJTIIAQ3HD6HD2
+
+./svc.sh install
+./svc.sh start
