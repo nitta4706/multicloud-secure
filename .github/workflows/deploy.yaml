@@ -1,0 +1,162 @@
+# reference https://github.com/GoogleCloudPlatform/blueprints/blob/main/catalog/gitops/hydration-trigger.yaml
+
+name: deploy
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+jobs:
+  rendering:
+    runs-on: self-hosted
+    permissions:
+      contents: write
+      id-token: write
+    if: github.head_ref == 'stg'
+
+    steps:
+      - name: init
+        run: |
+          mkdir -p source
+          mkdir -p deployment
+      - name: checkout source branch
+        id: checkout_source
+        uses: actions/checkout@v3
+        with:
+          ref: stg
+          path: source
+      - name: checkout deployment branch
+        id: checkout_deployment
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          path: deployment
+
+      - name: Make Google group
+        id: make_group
+        working-directory: source/python
+        run: python3 make_group.py
+
+      - name: Get major version
+        id: major_version
+        working-directory: source
+        run: |
+          version="$(cat VERSION.txt)"
+          if [[ "$version" =~ ^(v[0-9]+)\..* ]]; then major_ver="${BASH_REMATCH[1]}"; fi
+          echo "MAJOR_VERSION=$major_ver" >> $GITHUB_ENV
+
+      - name: install kpt
+        run: |
+          mkdir -p ${HOME}/bin
+          curl -L https://github.com/GoogleContainerTools/kpt/releases/download/v1.0.0-beta.1/kpt_linux_amd64 --output ${HOME}/bin/kpt
+          chmod +x ${HOME}/bin/kpt
+          echo "${HOME}/bin" >> $GITHUB_PATH
+      - name: kpt fn resource_manager
+        working-directory: source/kpt
+        run: |
+          rm -rf ../../workspace
+          for project in $( ls ); do # $projectの例 : ggen-tech-web
+
+            if [[ $project == template ]]; then
+              continue
+            fi
+            if [[ $project == option ]]; then
+              continue
+            fi
+            version="$(cat $project/VERSION.txt)"
+            if [[ "$version" =~ ^(v[0-9]+)\..* ]]; then project_ver="${BASH_REMATCH[1]}"; fi
+            echo "major_version::$MAJOR_VERSION"
+            if ! [[ $MAJOR_VERSION == $project_ver ]]; then
+              continue
+            fi
+
+            for env in $( ls -d ${project}/* ); do # $envの例 : ggen-tech-web/common, ggen-tech-web/prd
+              if echo "$env" | grep -q "VERSION.txt"; then
+                continue
+              fi
+              kpt pkg init $env
+              # common/ には resource_manager/ が無いため条件分岐させる
+              if [[ $env == */common ]]; then
+                # ディレクトリが既に存在している場合、
+                # directory "xxx" already exists, please delete the directory and retry
+                # とエラーになる
+                # → 一旦 ../../workspace 配下にレンダリング結果を保存する
+                kpt fn render $env --output=../../workspace/${env} --truncate-output=false
+              else
+                kpt fn render $env/resource_manager --output=../../workspace/${env}/resource_manager --truncate-output=false
+              fi
+            done
+          done
+      - name: push resource_manager
+        working-directory: deployment
+        run: |
+          git config --local user.name "${GITHUB_ACTOR}"
+          git config --local user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          
+          for project in $( ls ../workspace/ ); do # $projectの例 : ggen-tech-web
+            # mkdir -p sync/$project
+            # git rm -rf sync/$project/* --ignore-unmatch
+            cp -r ../workspace/$project ./sync/
+          done
+          git add -A
+          if git diff --cached --exit-code; then echo "No changes"; true;
+          else git commit -m "Make Google Cloud projects on $(date +%Y/%m/%d)" && git push; fi
+      - name: kpt fn
+        working-directory: source/kpt
+        run: |
+          rm -rf ../../workspace
+          for project in $( ls ); do # $projectの例 : ggen-tech-web
+            if [[ $project == template ]]; then
+              continue
+            fi
+            if [[ $project == option ]]; then
+              continue
+            fi
+            version="$(cat $project/VERSION.txt)"
+            if [[ "$version" =~ ^(v[0-9]+)\..* ]]; then project_ver="${BASH_REMATCH[1]}"; fi
+            if ! [[ $MAJOR_VERSION == $project_ver ]]; then
+              continue
+            fi
+            for env in $( ls -d ${project}/* ); do # $envの例 : ggen-tech-web/common, ggen-tech-web/prd
+              if echo "$env" | grep -q "VERSION.txt"; then
+                continue
+              fi
+              kpt pkg init $env
+              # common/ ではプロジェクト作成を待つ必要がないためそのままレンダリング
+              # 後続のステージで一度 sync/$project/ 内のファイルを全て削除する (VPC-SCをちゃんと削除するため)
+              # その際に common/ を再生成するために、本ステージでも繰り返しレンダリングしている
+              if [[ $env == */common ]]; then
+                kpt fn render $env --output=../../workspace/${env} --truncate-output=false
+              else
+                project_id=$(echo $env | sed 's/\//-/g')
+                echo $project_id
+                # Google Cloudプロジェクトが作成され、プロジェクト番号が取得できるようになるまでループ
+                while true; do
+                  if [[ -n $(gcloud projects list | grep $project_id) ]]; then
+                    project_num=$(gcloud projects describe $project_id --format='value(projectNumber)')
+                    sed -i "s/__project_num__/$project_num/g" $env/setters.yaml
+                    break
+                  else
+                    sleep 10
+                  fi
+                done
+                kpt fn render $env --output=../../workspace/${env} --truncate-output=false
+              fi
+            done
+          done
+      - name: push
+        working-directory: deployment
+        run: |
+          git config --local user.name "${GITHUB_ACTOR}"
+          git config --local user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          
+          for project in $( ls ../workspace/ ); do # $projectの例 : ggen-tech-web
+            git rm -rf sync/$project/* --ignore-unmatch
+            cp -r ../workspace/$project ./sync/
+          done
+          git add -A
+          if git diff --cached --exit-code; then echo "No changes"; true;
+          else git commit -m "Make other resources on $(date +%Y/%m/%d)" && git push; fi
